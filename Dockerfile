@@ -8,7 +8,7 @@
 
 # Install FSL
 FROM neurodebian:xenial
-MAINTAINER Michael Perry <lmperry@stanford.edu>
+MAINTAINER Amit Akula <amit.akula@ucsf.edu>
 
 # Run apt-get calls
 COPY sources /etc/apt/sources.list.d/neurodebian.sources.list

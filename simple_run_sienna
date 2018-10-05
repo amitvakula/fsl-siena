@@ -1,0 +1,26 @@
+INPUT_DIR=/Users/amitvakula/Documents/processing/sienna
+
+first_file="${INPUT_DIR}/first.nii"
+second_file="${INPUT_DIR}/second.nii"
+if [[ -f $first_file && -f $second_file ]]; then
+  echo "$CONTAINER  Running siena on `basename "$first_file"` and `basename "$second_file"`"
+  output_file_base=$OUTPUT_DIR/`basename "$input_file" .nii.gz`
+  siena "$first_file" "$second_file"
+  STATUS=$?
+else
+  echo "$CONTAINER  No inputs were provided and $INPUT_DIR has no valid input files!"
+  exit 1
+fi
+
+# Check exit status
+if [[ $STATUS == 0 ]]
+  then
+    echo -e "$CONTAINER  Wrote: `ls $OUTPUT_DIR`"
+    echo -e "$CONTAINER  Done!"
+
+  else
+    echo "$CONTAINER  command returned a non-zero exit code = [$STATUS]."
+    exit 1
+fi
+
+exit 0
